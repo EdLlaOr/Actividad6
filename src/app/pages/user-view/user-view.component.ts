@@ -21,10 +21,10 @@ export class UserViewComponent {
     this.activatedRoute.params.subscribe(async (params:any) =>{
       console.log(params)
       const res = params.id
-      console.log(res)
+      
       let response = await this.usersService.getById(res)
-
-      console.log(response)
+      this.anUser = response
+      
     })
   }
    
