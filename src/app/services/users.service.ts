@@ -14,10 +14,24 @@ export class UsersService {
 
   getAll():Promise<IResponse>{
     return lastValueFrom(this.httpClient.get<IResponse>(this.baseUrl))
+    
   }
 
   getById(id:string):Promise<IUser>{
     return lastValueFrom(this.httpClient.get<IUser>(`${this.baseUrl}/${id}`))
+  }
+
+  
+  delUser(id:string):Promise<IUser>{
+    return lastValueFrom(this.httpClient.delete<IUser>(`${this.baseUrl}/${id}`))
+  }
+
+  arrOrdered(arrUsers:IUser[]){
+    return arrUsers.sort((a:IUser,b:IUser):any=>{
+      if(a.id>b.id){
+        return 1
+      }else return -1
+    })
   }
 
 }

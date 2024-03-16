@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IUser } from '../../interfaces/iuser.interface';
 import { UsersService } from '../../services/users.service';
 import { NavHeadComponent } from "../../component/nav-head/nav-head.component";
 import { AllButtonsComponent } from "../../component/all-buttons/all-buttons.component";
+
 
 @Component({
     selector: 'app-user-view',
@@ -20,12 +21,12 @@ export class UserViewComponent {
   usersService = inject (UsersService)
 
   ngOnInit() : void{
-    this.activatedRoute.params.subscribe(async (params:any) =>{
-      const res = params.id
-      let response = await this.usersService.getById(res)
-      this.anUser = response
-      
+    this.activatedRoute.queryParams.subscribe(async(queryParams:any)=>{
+      const _id=queryParams[0]    
+      this.anUser = await this.usersService.getById(_id)
     })
+      
   }
+ }
    
-}
+

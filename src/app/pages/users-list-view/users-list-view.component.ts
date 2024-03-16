@@ -19,17 +19,18 @@ export class UsersListViewComponent {
 
   async ngOnInit(): Promise<void>{
     const response = await this.usersServices.getAll()
-    const arrUsers = response.results
+    let arrUsers = response.results
+    arrUsers = this.usersServices.arrOrdered(arrUsers)
     let finishCard = this.pageView*this.perPage;
     let initCard = finishCard-this.perPage; 
     this.arrUsersView = response.results.slice(initCard,finishCard)
-    
   }
 
   async pageUp(){
     this.pageView ++
     const response = await this.usersServices.getAll()
-      const arrUsers = response.results
+      let arrUsers = response.results
+      arrUsers = this.usersServices.arrOrdered(arrUsers)
       let finishCard = this.pageView*this.perPage;
       let initCard = finishCard-this.perPage; 
       if(response.results.slice(initCard,finishCard).length>0){
@@ -44,13 +45,13 @@ export class UsersListViewComponent {
     if (this.pageView>1){
       this.pageView --
       const response = await this.usersServices.getAll()
-      const arrUsers = response.results
+      let arrUsers = response.results
+      arrUsers = this.usersServices.arrOrdered(arrUsers)
       let finishCard = this.pageView*this.perPage;
       let initCard = finishCard-this.perPage; 
       this.arrUsersView = response.results.slice(initCard,finishCard) 
     
     }
   }
-
 
 }

@@ -13,9 +13,8 @@
                 <hr>
                 <p>Nombre usuario: {{anUser.username}}</p>
                 <p>E-mail: {{anUser.email}}</p>
-                <a class="btn btn-secondary" [routerLink]="['/users']">Volver al listado</a>
             </div>
-            <app-all-buttons></app-all-buttons>
+            <app-all-buttons [parent]="'view'" [_idUser]="anUser._id" [idUser]="anUser.id"></app-all-buttons>
         </div>
     </div>
 

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-all-buttons',
@@ -10,4 +11,16 @@ import { RouterLink } from '@angular/router';
 })
 export class AllButtonsComponent {
 
+  @Input() parent:string=""
+  @Input() _idUser:string=""
+  @Input() idUser:number=0
+  
+  usersService = inject(UsersService)
+
+  async delUser(id:string){
+    let confirmation = confirm('Seguro que quiere borrar el usuario '+this.idUser)
+    if(confirmation){
+      let response=await this.usersService.delUser(id)
+    }  
+  }
 }

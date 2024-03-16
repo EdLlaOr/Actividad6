@@ -1,6 +1,10 @@
-<div class="d-flex gap-2">
-    <a class="btn btn-secondary">Ver detalle</a>
-    <a class="btn btn-warning">Actualizar</a>
-    <a class="btn btn-danger">Borrar</a>
-    <a class="btn btn-secondary" [routerLink]="['/users']">Volver a listado</a>
+<div class="d-flex gap-2 t-0.6em">
+    @if(parent==='card'){
+        <a class="btn btn-secondary" [routerLink]="['/user',idUser]" [queryParams]="[_idUser]">Detalles</a>
+    }@else if (parent==='view') {
+        <a class="btn btn-secondary" [routerLink]="['/users']">Ir a listado</a>
+    }
+    <a class="btn btn-secondary" [routerLink]="['/update','user',idUser]">Actualizar</a>
+    <button class="btn btn-secondary" (click)="delUser(_idUser)">Borrar</button>
+    
 </div>
