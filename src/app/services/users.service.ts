@@ -34,4 +34,12 @@ export class UsersService {
     })
   }
 
+  newUser(formValue:IUser):Promise<IUser>{
+    return lastValueFrom(this.httpClient.post<IUser>(this.baseUrl,formValue))
+  }
+
+  upDateUser(formValue:IUser):Promise<IUser>{
+    return lastValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}/${formValue._id}`,formValue))
+  }
+
 }

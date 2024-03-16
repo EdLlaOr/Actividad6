@@ -1,27 +1,27 @@
 <header>
     <app-nav-head></app-nav-head>
 </header>
-<section class="container-fluid d-flex">
+<section>
     <h3>{{typeForm}} USUARIO</h3>
     <hr>
-    <form class="d-flex row" [formGroup]="usersForm" (ngSubmit)="getDataForm()">
+    <form  [formGroup]="usersForm" (ngSubmit)="getDataForm()">
         <div>
-            <label class="form-label" for="nameuser">Nombre Usuario</label>
-            <input type="text" id="nameuser" for="nameuser" formControlName="nameuser" placeholder="Introduzca nombre de usuario">
+            <label class="form-label" for="first_name">Nombre Usuario</label>
+            <input type="text" id="first_name" formControlName="first_name" placeholder="Introduzca nombre de usuario">
         </div>
         <div>
-            <label class="form-label" for="firstname">Apellido Usuario</label>
-            <input type="text" id="firstname" for="firstname" formControlName="firstname" placeholder="Introduzca apellido de usuario">
+            <label class="form-label" for="last_name">Apellido Usuario</label>
+            <input type="text" id="last_name" formControlName="last_name" placeholder="Introduzca apellido de usuario">
         </div>
         <div>
-            <label class="form-label" for="emailuser">Email Usuario</label>
-            <input type="text" id="" for="emailuser" formControlName="emailuser" placeholder="Introduzca email de usuario">
+            <label class="form-label" for="email">Email Usuario</label>
+            <input type="text" id="email" formControlName="email" placeholder="Introduzca email de usuario">
         </div>
         <div>
-            <label class="form-label" for="imageuser">Imagen Usuario</label>
-            <input type="text" id="imageuser" for="imageuser" formControlName="imageuser" placeholder="Introduzca URL imagen de usuario">
+            <label class="form-label" for="image">Imagen Usuario</label>
+            <input type="text" id="image" formControlName="image" placeholder="Introduzca URL imagen de usuario">
         </div>
-        <input type="submit" value="Guardar" class="btn btn-succes mt-3">
+        <input type="submit" value="{{typeBtn}}" class="btn btn-success mt-3">
 
     </form>
 
