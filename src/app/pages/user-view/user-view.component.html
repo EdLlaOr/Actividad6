@@ -1,3 +1,6 @@
+<header>
+    <app-nav-head></app-nav-head>
+</header>
 <section class="container mt-3">
     <div class="card-shadow p-3">
         <div class="row">
@@ -5,10 +8,14 @@
                 <img class="img-fluid" [src]="anUser.image" [alt]="anUser.username">
             </figure>
             <div class="col-12 col-md-9">
+                <h2>{{anUser.first_name}}</h2>
                 <h2>{{anUser.last_name}}</h2>
                 <hr>
+                <p>Nombre usuario: {{anUser.username}}</p>
+                <p>E-mail: {{anUser.email}}</p>
+                <a class="btn btn-secondary" [routerLink]="['/users']">Volver al listado</a>
             </div>
-
+            <app-all-buttons></app-all-buttons>
         </div>
     </div>
 

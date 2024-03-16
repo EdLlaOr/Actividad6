@@ -2,13 +2,14 @@ import { Component, inject } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interface';
 import { UserCardComponent } from "../../component/user-card/user-card.component";
+import { NavHeadComponent } from "../../component/nav-head/nav-head.component";
 
 @Component({
     selector: 'app-users-list-view',
     standalone: true,
     templateUrl: './users-list-view.component.html',
     styleUrl: './users-list-view.component.css',
-    imports: [ UserCardComponent]
+    imports: [UserCardComponent, NavHeadComponent]
 })
 export class UsersListViewComponent {
   usersServices = inject(UsersService)
