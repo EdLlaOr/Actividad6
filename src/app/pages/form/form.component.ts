@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavHeadComponent } from "../../component/nav-head/nav-head.component";
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interface';
@@ -26,10 +26,13 @@ export class FormComponent {
 
   constructor(){
     this.usersForm = new FormGroup({
-      last_name: new FormControl('',[]),
-      first_name: new FormControl('',[]),
-      email : new FormControl('',[]),
-      image: new FormControl('',[])
+      last_name: new FormControl('',[Validators.required, Validators.minLength(2)]),
+      first_name: new FormControl('',[Validators.required, Validators.minLength(2)]),
+      // Por si alguien se llama/apellida Ed o Al
+      email : new FormControl('',[Validators.required, Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,30}$/)]), 
+      // le doy en el dominio hasta 30 para que me deje actualizar los usuarios que vienen en la API, cuyo email 
+      // tienen el dominio 'peticiones.online'
+      image: new FormControl('',[Validators.required, Validators.pattern(/^(http[s]?:\/\/)/)])
     })
   }
 
@@ -47,11 +50,14 @@ export class FormComponent {
         }
         this.usersForm = new FormGroup({
           _id: new FormControl(response._id),
-          last_name: new FormControl(response.last_name, []),
-          first_name: new FormControl(response.first_name, []),
+          last_name: new FormControl(response.last_name, [Validators.required, Validators.minLength(2)]),
+          first_name: new FormControl(response.first_name, [Validators.required, Validators.minLength(2)]),
+          // Por si alguien se llama/apellida Ed o Al
           username: new FormControl(response.username, []),
-          email: new FormControl(response.email, []),
-          image: new FormControl(response.image, []),
+          email: new FormControl(response.email, [Validators.required, Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,30}$/)]),
+          // le doy en el dominio hasta 30 para que me deje actualizar los usuarios que vienen en la API, cuyo email 
+        // tienen el dominio 'peticiones.online'
+          image: new FormControl(response.image, [Validators.required, Validators.pattern(/^(http[s]?:\/\/)/)]),
           password: new FormControl(response.password, []),
         }, [])
       }
@@ -61,9 +67,9 @@ export class FormComponent {
     async getDataForm() {
     if (this.usersForm.value._id) {
       //actualizando
-      const response = await this.usersService.upDateUser(this.usersForm.value);
+      const response = await this.usersService.upDateUser(this.usersForm.value)
       if (response.id) {
-        alert(`El usuario ${response.first_name} ${response.last_name} se ha actualizado correctamente`);
+        alert(`El usuario ${response.first_name} ${response.last_name} se ha actualizado correctamente`)
         this.router.navigate(['/users'])
       }
       else {
@@ -77,7 +83,7 @@ export class FormComponent {
       if (response.id) {
         alert(`El usuario ${response.first_name} ${response.last_name} se ha añadido correctamente`)
         this.router.navigate(['/users'])
-      } else {
+        } else {
         alert('Ha habido un problema intentalo de nuevo')
       }
 
