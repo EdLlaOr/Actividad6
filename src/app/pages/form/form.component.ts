@@ -4,6 +4,7 @@ import { NavHeadComponent } from "../../component/nav-head/nav-head.component";
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
     selector: 'app-form',
@@ -69,11 +70,11 @@ export class FormComponent {
       //actualizando
       const response = await this.usersService.upDateUser(this.usersForm.value)
       if (response.id) {
-        alert(`El usuario ${response.first_name} ${response.last_name} se ha actualizado correctamente`)
+        Swal.fire(`El usuario ${response.first_name} ${response.last_name} se ha actualizado correctamente`)
         this.router.navigate(['/users'])
       }
       else {
-        alert('Ha habido un problema intentalo de nuevo')
+        Swal.fire('Ha habido un problema intentalo de nuevo')
       }
       
 
@@ -81,10 +82,10 @@ export class FormComponent {
       //insertar
       const response = await this.usersService.newUser(this.usersForm.value)
       if (response.id) {
-        alert(`El usuario ${response.first_name} ${response.last_name} se ha añadido correctamente`)
+        Swal.fire(`El usuario ${response.first_name} ${response.last_name} se ha añadido correctamente`)
         this.router.navigate(['/users'])
         } else {
-        alert('Ha habido un problema intentalo de nuevo')
+        Swal.fire('Ha habido un problema intentalo de nuevo')
       }
 
     }

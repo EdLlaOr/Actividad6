@@ -1,28 +1,26 @@
 <header>
     <app-nav-head></app-nav-head>
 </header>
-<section>
-    <h3>{{typeForm}} USUARIO</h3>
-    <hr>
-    <form  [formGroup]="usersForm" (ngSubmit)="getDataForm()">
-        <div>
+<h3>{{typeForm}} USUARIO</h3>
+<hr>
+<section class="container my-2">
+    <form [formGroup]="usersForm" class="card p-3 shadow" (ngSubmit)="getDataForm()">
+        <div class="my-2">
             <label class="form-label" for="first_name">Nombre Usuario</label>
-            <input type="text" id="first_name" formControlName="first_name" placeholder="Introduzca nombre de usuario">
+            <input type="text" class="form-control" id="first_name" formControlName="first_name" placeholder="Introduzca nombre de usuario">
         </div>
-        <div>
+        <div class="my-2">
             <label class="form-label" for="last_name">Apellido Usuario</label>
-            <input type="text" id="last_name" formControlName="last_name" placeholder="Introduzca apellido de usuario">
+            <input type="text" class="form-control" id="last_name" formControlName="last_name" placeholder="Introduzca apellido de usuario">
         </div>
-        <div>
+        <div class="my-2">
             <label class="form-label" for="email">Email Usuario</label>
-            <input type="text" id="email" formControlName="email" placeholder="Introduzca email de usuario">
+            <input type="text" class="form-control" id="email" formControlName="email" placeholder="Introduzca email de usuario">
         </div>
-        <div>
+        <div class="my-2">
             <label class="form-label" for="image">Imagen Usuario</label>
-            <input type="text" id="image" formControlName="image" placeholder="Introduzca URL imagen de usuario">
+            <input type="text" class="form-control" id="image" formControlName="image" placeholder="Introduzca URL imagen de usuario">
         </div>
         <input type="submit" value="{{typeBtn}}" class="btn btn-success mt-3" [disabled]="!usersForm.valid">
-
     </form>
-
 </section>
